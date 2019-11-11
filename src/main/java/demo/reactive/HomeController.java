@@ -5,9 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.thymeleaf.spring5.context.webflux.IReactiveDataDriverContextVariable;
 import org.thymeleaf.spring5.context.webflux.ReactiveDataDriverContextVariable;
+
+import java.sql.Timestamp;
+import java.util.Calendar;
 
 @Controller
 public class HomeController {
@@ -35,4 +39,10 @@ public class HomeController {
         return "/home";
     }
 
+    @GetMapping("/test")
+    public String test( Model model ){
+        Timestamp ts = new Timestamp(Calendar.getInstance().getTime().getTime());
+        model.addAttribute("time", ts);
+        return "test";
+    }
 }
